@@ -1,47 +1,56 @@
-import './style.css'
+import './style.css';
 
-const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+const API_KEY = import.meta.env.VITE_NASA_API_KEY || 'X8Giv54f67mdjByLWDK2Q7pt9DkVPTLwN46Y3GnT';
 
 document.querySelector('#app').innerHTML = `
   <div class="dashboard">
     <header>
       <h1>Cosmic Explorer</h1>
-      <p class="subtitle"> NASA Astronomy Picture of the Day</p>
+      <p class="subtitle">NASA Astronomy Picture of the Day</p>
     </header>
+    
     <div class="controls">
-      <input type="date" id="date-picker" max = "${new Date().toISOString().split('T')[0]}"/>
+      <input type="date" id="date-picker" max="${new Date().toISOString().split('T')[0]}">
     </div>
-    <div id = "apod-content">
-      <div class = "loading">Loading cosmic data...</div>
+
+    <div id="apod-content">
+      <div class="loading">Gathering cosmic data...</div>
     </div>
   </div>
 `;
-const contentContainer = document.querySelector("#apod-content");
-const datePicker = document.querySelector("#date-picker");
 
-async function fetchAPOD(date='') {
-  contentContainer.innerHTML = `<div class="loading">traveling through space-time...</div>`;
+const contentContainer = document.querySelector('#apod-content');
+const datePicker = document.querySelector('#date-picker');
+
+async function fetchAPOD(date = '') {
+  contentContainer.innerHTML = `<div class="loading">Traveling through space-time...</div>`;
+  
   try {
-    const url  = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}${date ? `&date=${date}` : ''}`;
-
-    const response = await fetch(url)
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}${date ? `&date=${date}` : ''}`;
+    const response = await fetch(url);
     
-    if(!response.ok) throw new Error('Failed to fetch from NASA');
+    if (!response.ok) throw new Error('Failed to fetch from NASA');
+    
     const data = await response.json();
     renderAPOD(data);
   } catch (error) {
-    contentContainer.innerHTML = `<div class="error"><p> Uh oh! the cosmos are tangled. Try another date.</p></div>`;
+    contentContainer.innerHTML = `
+      <div class="error">
+        <p>Uh oh! The cosmos are tangled. Try another date.</p>
+      </div>
+    `;
   }
 }
 
 function renderAPOD(data) {
-  const mediaHTML = data.media_type === 'video'
-  ? '<iframe src="${data.url}" frameborder="0" allowfullscreen></iframe>'
-  : `<img src="${data.url}" alt="${data.title}"/>`;
+  const mediaHtml = data.media_type === 'video' 
+    ? `<iframe src="${data.url}" frameborder="0" allowfullscreen></iframe>`
+    : `<img src="${data.url}" alt="${data.title}">`;
+
   contentContainer.innerHTML = `
     <div class="apod-card">
-      <div class = "media-contianer">
-        ${mediaHTML}
+      <div class="media-container">
+        ${mediaHtml}
       </div>
       <div class="content">
         <h2>${data.title}</h2>
@@ -52,8 +61,10 @@ function renderAPOD(data) {
   `;
 }
 
+
 datePicker.addEventListener('change', (e) => {
   fetchAPOD(e.target.value);
 });
+
 
 fetchAPOD();
