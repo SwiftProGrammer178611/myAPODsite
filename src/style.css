@@ -21,12 +21,25 @@ body {
   width: 100%;
 }
 
+
 .dashboard {
   background: var(--card-bg);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box; 
+}
+
+
+.media-container img, .media-container iframe {
+  max-width: 100%;
+  width: 100%;
+  height: auto;  
+  border-radius: 12px;
+  max-height: 500px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 header {
@@ -67,14 +80,6 @@ input[type="date"] {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.media-container img, .media-container iframe {
-  width: 100%;
-  border-radius: 12px;
-  max-height: 500px;
-  object-fit: cover;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .content h2 {
