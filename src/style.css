@@ -1,51 +1,59 @@
 :root {
   --bg-color: #0b0d19;
-  --card-bg:#161930;
-  --accent-color:#7f5af0;
-  --text-main:#fffffe;
-  --text-secondary:#94a1b2;
+  --card-bg: #161930;
+  --accent-color: #7f5af0;
+  --text-main: #fffffe;
+  --text-secondary: #94a1b2;
 }
+
 body {
-  margin:0;
+  margin: 0;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
   color: var(--text-main);
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   padding: 2rem 1rem;
 }
+
 #app {
   max-width: 800px;
   width: 100%;
 }
+
 .dashboard {
   background: var(--card-bg);
   padding: 2rem;
-  border-radius:16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 header {
-  text-align:center;
-  margin-bottom:2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
-h1{ 
+
+h1 {
   margin: 0 0 0.5rem 0;
   color: var(--text-main);
   font-size: 2.5rem;
   letter-spacing: -0.5px;
 }
-.subtitle{
+
+.subtitle {
   color: var(--text-secondary);
-  margin:0;
+  margin: 0;
 }
-.controls{
+
+.controls {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-bottom: 2rem;
 }
 
-input[type="date"]{
+input[type="date"] {
   background: var(--bg-color);
   border: 2px solid var(--accent-color);
   color: var(--text-main);
@@ -53,37 +61,43 @@ input[type="date"]{
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
-} 
-.apod-card{
-  display:flex;
-  flex-direction:column;
-  gap:1.5rem;
 }
-.media-container img, .media-container iframe{
-  width:100%;
+
+.apod-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.media-container img, .media-container iframe {
+  width: 100%;
   border-radius: 12px;
   max-height: 500px;
-  object-fit:cover;
+  object-fit: cover;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
-.content h2{
+
+.content h2 {
   margin: 0 0 0.75rem 0;
   font-size: 1.8rem;
 }
-.date{
+
+.date {
   color: var(--accent-color);
-  font-weight:600;
+  font-weight: 600;
   margin-bottom: 1rem;
-  display:block;
+  display: block;
 }
-.explanation{
-  color: var(--accent-color);
+
+.explanation {
+  color: var(--text-secondary);
   line-height: 1.6;
   font-size: 1.05rem;
 }
-.loading, .error{
-  text-align:center;
-  font-size:1.2rem;
-  color: var(--text-secondary);
+
+.loading, .error {
+  text-align: center;
   padding: 3rem;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
 }
